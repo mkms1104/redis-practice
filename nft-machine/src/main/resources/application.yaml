@@ -1,0 +1,32 @@
+spring:
+  profiles:
+    active: local
+
+logging:
+  level:
+    com.redis.com.redis.example: debug
+
+nft:
+  name: scam
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  redis:
+    host: localhost
+    port: 6379
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: cloud
+
+  redis:
+    host: clustercfg.test-memorydb.sytn5f.memorydb.ap-northeast-2.amazonaws.com
+    port: 6379

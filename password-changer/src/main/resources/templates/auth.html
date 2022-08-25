@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1>핸드폰 인증을 통한 비밀번호 변경</h1>
+<div>
+    <label>
+        <input type="text" placeholder="핸드폰 번호를 입력하세요."/>
+        <button id="pubBtn">인증번호 받기</button>
+    </label>
+</div>
+<div>
+    <label>
+        <input id="pubText" type="text" placeholder="인증번호를 입력하세요." disabled/>
+    </label>
+</div>
+<div>
+    <button id="nextBtn">다음</button>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tempCertificationNumber = "1234";
+
+        const pubBtn = document.getElementById("pubBtn");
+        const pubText = document.getElementById("pubText");
+        const nextBtn = document.getElementById("nextBtn");
+
+        pubBtn.onclick = () => {
+            alert('인증번호가 발급되었습니다.');
+            console.log(tempCertificationNumber);
+            pubText.disabled = false;
+        }
+
+        nextBtn.onclick = () => {
+            if (pubText.value !== tempCertificationNumber.toString()) {
+                alert('인증번호가 올바르지 않습니다.');
+                return;
+            }
+            location.href = `http://localhost:8080/api/v1/auth/change-password?certification_number=${tempCertificationNumber}`;
+        };
+    });
+</script>
+</body>
+</html>
